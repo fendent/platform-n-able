@@ -1,7 +1,7 @@
 {
   "build": {
     "arduino":{
-      "ldscript": "linker_script.ld"
+      "ldscript": "nrf52840_xxaa.ld"
     },
     "core": "nRF5",
     "cpu": "cortex-m4",
