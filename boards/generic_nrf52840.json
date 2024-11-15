@@ -28,6 +28,8 @@
       "protocols": [
         "jlink",
         "nrfjprog",
+        "nrfutil",
+        "adafruit-nrfutil",
         "stlink",
         "cmsis-dap",
         "blackmagic"
