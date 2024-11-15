@@ -16,7 +16,7 @@ import os
 import sys
 import subprocess
 
-from platformio.public import PlatformBase
+from platformio.public import PlatformBase # type: ignore
 
 
 IS_WINDOWS = sys.platform.startswith("win")
@@ -38,6 +38,13 @@ class NablePlatform(PlatformBase):
             upload_protocol = variables.get(
                 "upload_protocol",
                 self.board_config(board).get("upload.protocol", ""))
+
+            if board in ("nano33ble", "nicla_sense_me"):
+                self.packages["toolchain-gccarmnoneeabi"]["version"] = "~1.70201.0"
+                self.frameworks["arduino"]["package"] = "framework-arduino-mbed"
+                self.frameworks["arduino"][
+                    "script"
+                ] = "builder/frameworks/arduino/mbed-core/arduino-core-mbed.py"
 
             if upload_protocol == "adafruit-nrfutil":
                 self.packages["tool-adafruit-nrfutil"]["optional"] = False
