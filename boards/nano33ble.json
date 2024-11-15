@@ -17,7 +17,7 @@
         "0x805a"
       ]
     ],
-    "mcu": "nrf52840",
+    "mcu": "nrf52840_xxaa",
     "variant": "ARDUINO_NANO33BLE"
   },
   "connectivity": [
