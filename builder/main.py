@@ -15,7 +15,7 @@
 import sys
 from platform import system
 from os import makedirs
-from os.path import isdir, join
+from os.path import isdir, join, basename
 
 IS_WINDOWS = sys.platform.startswith("win")
 IS_MACOS = sys.platform.startswith("darwin")
@@ -43,6 +43,11 @@ def BeforeUpload(target, source, env):  # pylint: disable=W0613,W0621
 
     if bool(upload_options.get("wait_for_upload_port", False)):
         env.Replace(UPLOAD_PORT=env.WaitForNewSerialPort(before_ports))
+
+    # use only port name for BOSSA
+    if ("/" in env.subst("$UPLOAD_PORT") and
+            env.subst("$UPLOAD_PROTOCOL") == "sam-ba"):
+        env.Replace(UPLOAD_PORT=basename(env.subst("$UPLOAD_PORT")))
 
 
 def AfterUpload(target, source, env):  # pylint: disable=W0613,W0621
