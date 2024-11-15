@@ -18,7 +18,7 @@
       ]
     ],
     "mcu": "nrf52840_xxaa",
-    "variant": "ARDUINO_NANO33BLE"
+    "variant": "Generic"
   },
   "connectivity": [
     "bluetooth"
